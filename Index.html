@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pendampingan Perpajakan & Keuangan - Single-Page App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .service-card {
+        transition: all 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .service-card.selected {
+        border-color: #2563eb;
+        background-color: #eff6ff;
+      }
+      .icon-size {
+        width: 3rem; /* h-12 */
+        height: 3rem; /* w-12 */
+        min-width: 3rem;
+        min-height: 3rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <!-- 1. Header & Landing Page -->
+    <header class="bg-white shadow">
+      <nav
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="text-2xl font-bold text-gray-800">ADE Consultan</div>
+        <a
+          href="#consultation"
+          class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition"
+          >Konsultasi Sekarang</a
+        >
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <section class="text-center mb-16">
+        <h1
+          class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight"
+        >
+          Pendampingan <br />
+          <span class="text-blue-600">Perpajakan & Keuangan</span> Anda.
+        </h1>
+        <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+          Masalah pajak dan keuangan yang membingungkan. <br />
+          Kami hadir sebagai mitra pendamping Anda. Pilih tema layanan kami.
+        </p>
+      </section>
+
+      <!-- 2. Tema Layanan (Menu) -->
+      <section id="services" class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">
+          Pilih Tema Layanan
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Tema 1 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Konsultasi Pajak Orang Pribadi')"
+          >
+            <div class="mb-6">
+              <!-- Icon 1: Konsultasi Pajak Orang Pribadi -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">
+              Konsultasi Pajak Pribadi
+            </h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Masalah SPT Tahunan, denda pajak, atau perencanaan pajak untuk
+              Anda sendiri.
+            </p>
+          </div>
+
+          <!-- Tema 2 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Konsultasi Pajak Badan/Perusahaan')"
+          >
+            <div class="mb-6">
+              <!-- Icon 2: Konsultasi Pajak Badan/Perusahaan -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.053.213-7.5.618V21h15z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">
+              Konsultasi Pajak Badan
+            </h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Pendampingan pajak untuk perusahaan, audit, keberatan, dan
+              banding.
+            </p>
+          </div>
+
+          <!-- Tema 3 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Perencanaan Keuangan (Financial Planning)')"
+          >
+            <div class="mb-6">
+              <!-- Icon 3: Perencanaan Keuangan (Financial Planning) -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M3 13.125C3 12.504 3.504 12 4.125 12h.75c.621 0 1.125.504 1.125 1.125v6.75C6 20.496 5.496 21 4.875 21h-.75A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h.75c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-.75a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h.75c.621 0 1.125.504 1.125 1.125v15.75c0 .621-.504 1.125-1.125 1.125h-.75a1.125 1.125 0 01-1.125-1.125V4.125z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">
+              Perencanaan Keuangan
+            </h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Menyusun strategi keuangan jangka panjang, investasi, dan pensiun.
+            </p>
+          </div>
+
+          <!-- Tema 4 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Layanan Akuntansi & Pembukuan')"
+          >
+            <div class="mb-6">
+              <!-- Icon 4: Layanan Akuntansi & Pembukuan -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">
+              Akuntansi & Pembukuan
+            </h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Membantu menyusun laporan keuangan bulanan atau tahunan usaha
+              Anda.
+            </p>
+          </div>
+
+          <!-- Tema 5 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Restrukturisasi Hutang Usaha')"
+          >
+            <div class="mb-6">
+              <!-- Icon 5: Restrukturisasi Hutang Usaha -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M12 6v12m-3-2.818l.879.659c1.403 1.052 3.837 1.052 5.24 0l.879-.659M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">
+              Restrukturisasi Hutang
+            </h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Strategi negosiasi dan penyelesaian hutang usaha yang menumpuk.
+            </p>
+          </div>
+
+          <!-- Tema 6 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Audit Keuangan Internal')"
+          >
+            <div class="mb-6">
+              <!-- Icon 6: Audit Keuangan Internal -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A3.375 3.375 0 0011.25 11.625v2.625m3.75 3.75h.008v.008h-.008v-.008zm-6.75-6.75h.008v.008h-.008v-.008zM4.5 19.5v-2.625a3.375 3.375 0 013.375-3.375h-1.5A3.375 3.375 0 019.75 16.875v2.625m-3.75 0h.008v.008h-.008v-.008zM19.5 9a3.375 3.375 0 013.375 3.375h-1.5A3.375 3.375 0 0118 12.375v2.625"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">Audit Internal</h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Evaluasi efektivitas operasional, kepatuhan, dan pengelolaan
+              risiko internal.
+            </p>
+          </div>
+
+          <!-- Tema 7 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Perencanaan Suksesi Keuangan Keluarga')"
+          >
+            <div class="mb-6">
+              <!-- Icon 7: Perencanaan Suksesi Keuangan Keluarga -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M19.5 12h-15m0 0l3 3m-3-3l3-3m12 3l3 3m-3-3l3-3"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">Suksesi Keuangan</h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Menyiapkan pengalihan kekayaan, warisan, dan bisnis keluarga
+              secara aman.
+            </p>
+          </div>
+
+          <!-- Tema 8 -->
+          <div
+            class="service-card bg-white p-8 rounded-2xl border-2 border-gray-100 cursor-pointer"
+            onclick="selectService('Pelatihan & Workshop Keuangan/Pajak')"
+          >
+            <div class="mb-6">
+              <!-- Icon 8: Pelatihan & Workshop Keuangan/Pajak -->
+              <svg
+                class="icon-size text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84 50.58 50.58 0 00-2.658.813M4.145 10.147l.114.316a.75.75 0 001.291-.02l.11-.303h12.678"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">
+              Pelatihan & Workshop
+            </h3>
+            <p class="text-gray-600 mt-3 text-sm">
+              Program edukasi khusus untuk staf akuntansi dan keuangan
+              perusahaan.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Form Input & 4. Draft WA Message -->
+      <section
+        id="consultation"
+        class="mb-20 bg-white p-10 rounded-2xl shadow-lg"
+      >
+        <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">
+          Lengkapi Data Konsultasi
+        </h2>
+        <form id="consultationForm" onsubmit="submitForm(event)">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <label class="block text-gray-700 font-medium mb-2"
+                >Layanan yang Dipilih</label
+              >
+              <input
+                type="text"
+                id="selected_service"
+                name="layananyangdipilih"
+                class="w-full bg-gray-100 border-2 border-gray-100 px-4 py-3 rounded-lg text-gray-700"
+                placeholder="Pilih tema di atas"
+                readonly
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2"
+                >Nama Lengkap</label
+              >
+              <input
+                type="text"
+                id="nama"
+                name="namalengkap"
+                class="w-full bg-white border-2 border-gray-100 px-4 py-3 rounded-lg"
+                placeholder="Isi nama Anda"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2"
+                >Nomor WhatsApp</label
+              >
+              <input
+                type="tel"
+                id="whatsapp_number"
+                name="nomorwhatsapp"
+                class="w-full bg-white border-2 border-gray-100 px-4 py-3 rounded-lg"
+                placeholder="Contoh: 081234567890"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2"
+                >Detail Kendala / Pertanyaan</label
+              >
+              <textarea
+                id="detail_kendala"
+                name="detailkendala"
+                rows="3"
+                class="w-full bg-white border-2 border-gray-100 px-4 py-3 rounded-lg"
+                placeholder="Berikan gambaran singkat masalah Anda"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="mt-10 border-t pt-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">
+              Pratinjau Draf Pesan WA
+            </h3>
+            <div
+              class="bg-[#dcf8c6] p-6 rounded-xl text-gray-800 font-sans text-sm shadow-sm border border-[#a3e58b] whitespace-pre-wrap"
+            >
+              <p id="wa_draft_preview">
+                Halo Ade Consultan, <br />
+                saya ingin berkonsultasi mengenai [Layanan]...
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-10 text-center">
+            <button
+              type="submit"
+              id="submitButton"
+              class="bg-blue-600 text-white px-10 py-3 rounded-xl hover:bg-blue-700 transition font-bold text-lg"
+            >
+              Kirim Data & Konsultasi via WA
+            </button>
+            <p id="responseStatus" class="mt-4 text-gray-600"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-10 mt-20">
+      <div class="container mx-auto px-6 text-center">
+        <p>
+          ADE Consultan @ 2026 <br />
+          &copy; All rights reserved
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // --- KONFIGURASI ---
+      // GANTI INI DENGAN URL DEPLOY KAMU YANG ASLI
+      const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbwBVxJ2pMqptWbK0NLfc6oh0Ld-gpDI3vSpfxnAXfogUHH91Dy9_EXalQvl_pbUijtl/exec";
+
+      // GANTI INI DENGAN NOMOR WA KLIEN KAMU (awali dengan 62)
+      const CLIENT_WHATSAPP_NUMBER = "6285810761007";
+
+      // Fungsi untuk memilih layanan
+      function selectService(serviceName) {
+        document.getElementById("selected_service").value = serviceName;
+
+        // Highlight kartu yang dipilih
+        document
+          .querySelectorAll(".service-card")
+          .forEach((card) => card.classList.remove("selected"));
+        event.currentTarget.classList.add("selected");
+
+        updateWADraft();
+
+        // Scroll ke form
+        document
+          .getElementById("consultation")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Fungsi untuk memperbarui pratinjau draf WA
+      function updateWADraft() {
+        const nama = document.getElementById("nama").value || "[Nama Anda]";
+        const layanan =
+          document.getElementById("selected_service").value || "[Layanan]";
+        const detail =
+          document.getElementById("detail_kendala").value || "[Detail Kendala]";
+
+        const message = `Halo ADE Consultan, saya *${nama}* ingin berkonsultasi mengenai layanan *${layanan}* yang Anda tawarkan.\n\nKendala yang saya hadapi:\n"${detail}"\n\nMohon informasi lebih lanjut mengenai pendampingan.`;
+        document.getElementById("wa_draft_preview").textContent = message;
+        return encodeURIComponent(message);
+      }
+
+      // Jalankan pembaruan draf saat input berubah
+      document.getElementById("nama").addEventListener("input", updateWADraft);
+      document
+        .getElementById("detail_kendala")
+        .addEventListener("input", updateWADraft);
+
+      // Fungsi kirim data
+      async function submitForm(event) {
+        event.preventDefault();
+        const submitButton = document.getElementById("submitButton");
+        const responseStatus = document.getElementById("responseStatus");
+        const form = document.getElementById("consultationForm");
+        const encodedMessage = updateWADraft();
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Mengirim data...";
+        responseStatus.textContent = "";
+
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        try {
+          // Kirim data ke Google Sheets melalui Apps Script
+          const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", // Penting agar tidak kena CORS error di GApps Script
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          // Catatan: mode 'no-cors' tidak memberikan data response,
+          // jadi kita asumsikan sukses jika fetch berhasil dikirim.
+          responseStatus.textContent =
+            "Data berhasil dikirim ke database. Mengarahkan ke WhatsApp...";
+
+          // Arahkan ke WhatsApp
+          setTimeout(() => {
+            window.location.href = `https://wa.me/${CLIENT_WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            submitButton.disabled = false;
+            submitButton.textContent = "Kirim Data & Konsultasi via WA";
+            form.reset();
+            updateWADraft();
+            document
+              .querySelectorAll(".service-card")
+              .forEach((card) => card.classList.remove("selected"));
+          }, 1000);
+        } catch (error) {
+          console.error("Gagal mengirim data:", error);
+          responseStatus.textContent =
+            "Terjadi kesalahan saat mengirim data. Silakan coba lagi.";
+          submitButton.disabled = false;
+          submitButton.textContent = "Kirim Data & Konsultasi via WA";
+        }
+      }
+    </script>
+  </body>
+</html>
